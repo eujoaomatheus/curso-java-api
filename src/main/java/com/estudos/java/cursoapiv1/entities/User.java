@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_USER")
@@ -25,5 +27,9 @@ public class User implements Serializable {
     private String phone;
 
     private String password;
+
+    //Um usuario pode ter vários Pedidos
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
 }

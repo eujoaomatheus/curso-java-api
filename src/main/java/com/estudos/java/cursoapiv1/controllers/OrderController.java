@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order")
+@CrossOrigin
 public class OrderController {
 
     final OrderService orderService;
@@ -20,26 +21,18 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<Order>> listar() {
-
-        List<Order> pedidos = orderService.listar();
-
-        System.out.println(pedidos);
-
-        return new ResponseEntity<>(pedidos, HttpStatus.OK);
+        return new ResponseEntity<>(orderService.listar(), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Order> buscarPeloId(@PathVariable Long id) {
-
-        Order order = orderService.buscarPorId(id);
-
-        return new ResponseEntity<>(order, HttpStatus.OK);
+        Order user = orderService.buscarPorId(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Order> salvar(@RequestBody Order o) {
-
-        Order order = orderService.salvar(o);
-
+    public ResponseEntity<Order> salvar(@RequestBody Order user) {
+        Order order = orderService.salvar(user);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 }

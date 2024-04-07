@@ -1,6 +1,7 @@
 package com.estudos.java.cursoapiv1.entities;
 
 import com.estudos.java.cursoapiv1.enums.OrderStatus;
+import com.estudos.java.cursoapiv1.utils.EntityUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Order implements Serializable {
+public class Order {
 
     public Order(Long id, Instant moment, OrderStatus status, User client) {
         this.id = id;
@@ -42,7 +43,9 @@ public class Order implements Serializable {
     }
 
     public void setStatus(OrderStatus status) {
-        if (status != null)
-            status.getCode();
+        if (status != null) {
+            this.status = status.getCode();
+        }
+
     }
 }

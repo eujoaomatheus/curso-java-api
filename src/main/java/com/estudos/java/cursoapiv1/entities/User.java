@@ -1,5 +1,6 @@
 package com.estudos.java.cursoapiv1.entities;
 
+import com.estudos.java.cursoapiv1.utils.EntityUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,11 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class User implements Serializable {
+public class User extends EntityUtils {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Column
     private String nome;
     @Column

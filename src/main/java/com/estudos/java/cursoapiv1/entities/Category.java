@@ -1,6 +1,7 @@
 package com.estudos.java.cursoapiv1.entities;
 
 
+import com.estudos.java.cursoapiv1.utils.EntityUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,16 +13,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "TB_CATEGORIA")
-@EqualsAndHashCode(of = "id")
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Category extends EntityUtils {
 
     private String name;
 
     @Getter
+    @Transient
     private Set<Product> products = new HashSet<>();
 
 }

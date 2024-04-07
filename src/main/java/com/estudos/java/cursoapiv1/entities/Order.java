@@ -2,7 +2,6 @@ package com.estudos.java.cursoapiv1.entities;
 
 import com.estudos.java.cursoapiv1.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 

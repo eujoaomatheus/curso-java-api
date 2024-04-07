@@ -1,8 +1,10 @@
 package com.estudos.java.cursoapiv1.config;
 
+import com.estudos.java.cursoapiv1.entities.Category;
 import com.estudos.java.cursoapiv1.entities.Order;
 import com.estudos.java.cursoapiv1.entities.User;
 import com.estudos.java.cursoapiv1.enums.OrderStatus;
+import com.estudos.java.cursoapiv1.repositories.CategoryRepository;
 import com.estudos.java.cursoapiv1.repositories.OrderRepository;
 import com.estudos.java.cursoapiv1.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -20,10 +22,12 @@ public class TestConfig implements CommandLineRunner {
 
     final UserRepository userRepository;
     final OrderRepository orderRepository;
+    final CategoryRepository categoryRepository;
 
-    public TestConfig(UserRepository userRepository, OrderRepository orderRepository) {
+    public TestConfig(UserRepository userRepository, OrderRepository orderRepository, CategoryRepository categoryRepository) {
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
+        this.categoryRepository = categoryRepository;
     }
 
 
@@ -45,6 +49,14 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.CANCELED,u1);
 
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        //Injetando os  Categorias no banco
+
+        Category c1 = new Category(null, "Eletronics");
+        Category c2 = new Category(null, "Books");
+        Category c3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
 
     }
 }

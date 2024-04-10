@@ -60,9 +60,9 @@ public class TestConfig implements CommandLineRunner {
 
         //Injetando os  Categorias no banco
 
-        Category c1 = new Category(null, new HashSet<>());
-        Category c2 = new Category(null, new HashSet<>());
-        Category c3 = new Category(null, new HashSet<>());
+        Category c1 = new Category("Eletronics", new HashSet<>());
+        Category c2 = new Category("Books", new HashSet<>());
+        Category c3 = new Category("Computers", new HashSet<>());
 
         Product p1 = new Product("The Lord of the Rings","Lorem ipsum dolor sit amet, consectetur.",90.5 ,"", new HashSet<>());
         Product p2 = new Product("Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 944.1 ,"", new HashSet<>());
@@ -73,6 +73,14 @@ public class TestConfig implements CommandLineRunner {
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
+
+        p1.getCategories().add(c2);
+        p2.getCategories().addAll(Arrays.asList(c1, c3));
+        p3.getCategories().add(c3);
+        p4.getCategories().add(c3);
+        p5.getCategories().add(c2);
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
     }
 }
